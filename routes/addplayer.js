@@ -22,7 +22,6 @@ async function get40LRecord(username) {
         let results = json.data.entries[0].results.stats.finaltime;
         return results;
     } else {
-        console.log("API response structure:", JSON.stringify(json.data, null, 2));
         throw new Error("Unexpected API response structure");
     }
 }
@@ -69,7 +68,6 @@ async function getUser(username) {
 router.post("/", async (req, res) => {
     try {
         const pname = req.body.username.toLowerCase();
-        console.log(pname)
         const user = await getUser(pname);
         const id = user._id;
         const revision = user.avatar_revision;
@@ -88,7 +86,6 @@ router.post("/", async (req, res) => {
         await new_player.save();
         console.log("New player added:", new_player);
         const players = await Player.find({});
-        console.log("All players:", players);
         const vars = {
             url: `https://tetr.io/user-content/avatars/${id}.jpg?rv=${revision}`,
             uname: pname,

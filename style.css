@@ -1,7 +1,7 @@
 h1 {
     color:rgb(20, 8, 78);
     font-family: "Jersey 15", sans-serif;
-    font-size:xx-large;
+    font-size:45px;
 }
 
 h2 {
@@ -34,8 +34,6 @@ body {
     padding: 20px;
     width: 95%;
     box-sizing: border-box;
-    border:#dce3eb 2px solid;
-    background-color: #f4f4ff;
     border-radius: 8px;
 
   }
@@ -65,7 +63,38 @@ body {
     flex-direction: column;
     gap: 4px;
   }
-  
+
+
+input[type="submit"] {
+    background: #363636;
+    color: #e7e7e7;
+    border: 2px solid #222;
+    padding: 5px 5px;
+    font-family: monospace;
+    cursor: pointer;
+    transition: transform 0.05s ease, box-shadow 0.1s ease, background 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background: #111;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+input[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+/* Text inputs styled to match buttons */
+#username {
+    background: #f4f4f4;
+    color: #3b3b3b;
+    border: 2px solid #222;
+    padding: 5px 5px;
+    font-family: monospace;
+    box-sizing: border-box;
+}
+
+
   .username {
     font-size: 1.1rem;
     font-weight: bold;
@@ -76,3 +105,5 @@ body {
     color:rgb(53, 58, 135);
     font-family: "Jersey 15", sans-serif;
   }
+
+  

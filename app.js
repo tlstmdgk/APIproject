@@ -32,8 +32,6 @@ app.listen(portNumber, () => {
 });
 
 
-/* Coding part starts here */
-
 /* Initial connection to mongoose */
 async function main() {
     try {
@@ -57,6 +55,7 @@ app.get("/", async (req, res) => {
 app.post("/clear", async (req, res)=> {
     try {
         await Player.deleteMany({});
+        console.log("Cleared all players.")
         res.redirect("/");
     } catch (err) {
         console.error(err);
@@ -65,8 +64,6 @@ app.post("/clear", async (req, res)=> {
 });
 
 
-
-/* Coding part stops here */
 console.log("Type stop to shutdown the server: ");
 process.stdin.setEncoding("utf8");
 process.stdin.on('readable', () => {
