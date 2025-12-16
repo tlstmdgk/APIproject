@@ -84,7 +84,6 @@ router.post("/", async (req, res) => {
         });
 
         await new_player.save();
-        console.log("New player added:", new_player);
         const players = await Player.find({});
         const vars = {
             url: `https://tetr.io/user-content/avatars/${id}.jpg?rv=${revision}`,

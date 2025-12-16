@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const portNumber = process.env.PORT || 4000 
 
 /*
 require("dotenv").config({
@@ -28,11 +29,11 @@ if (process.argv.length !== 3) {
   }
     
 const portNumber = process.argv[2];
-
+*/
 app.listen(portNumber, () => {
     console.log(`Stats server running on http://localhost:${portNumber}`);
 });
-*/
+
 
 /* Initial connection to mongoose */
 async function main() {
