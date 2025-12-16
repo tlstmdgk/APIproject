@@ -3,10 +3,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
+/*
 require("dotenv").config({
    path: path.resolve(__dirname, "./localenv/.env"),
 });
-
+*/
 const Player = require("./models/Player");
 
 /* express stuff */
@@ -20,17 +21,18 @@ app.set("views", path.resolve(__dirname, "templates"));
 
 const addplayer = require("./routes/addplayer.js");
 app.use("/add-player", addplayer);
-
+/*
 if (process.argv.length !== 3) {
     console.log("Usage app.js 5001");
     process.exit(1);
   }
+    
 const portNumber = process.argv[2];
 
 app.listen(portNumber, () => {
     console.log(`Stats server running on http://localhost:${portNumber}`);
 });
-
+*/
 
 /* Initial connection to mongoose */
 async function main() {
@@ -63,7 +65,7 @@ app.post("/clear", async (req, res)=> {
     }
 });
 
-
+/*
 console.log("Type stop to shutdown the server: ");
 process.stdin.setEncoding("utf8");
 process.stdin.on('readable', () => {
@@ -72,7 +74,7 @@ process.stdin.on('readable', () => {
         const command = dataInput.trim();
 		if (command === "stop") {
 			process.stdout.write("Shutting down the server\n"); 
-            process.exit(0);  /* exiting */
+            process.exit(0);  
         } 
         else {
 			process.stdout.write(`Invalid command: ${command}`);
@@ -80,4 +82,6 @@ process.stdin.on('readable', () => {
         process.stdout.write("Type stop to shutdown the server: ");
 		process.stdin.resume();
     }
+    
 });
+*/
