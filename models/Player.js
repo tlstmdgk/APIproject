@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
 const playerSchema = new mongoose.Schema({
+  _id: String,
+  av: Number,
   username: {
     type: String,
     required: true,
@@ -8,7 +10,8 @@ const playerSchema = new mongoose.Schema({
     index: true
   },
   sprint_40: Number,
-  tetra_league: String,
+  rank: String,
+  tr: Number,
   last_updated: {
     type: Date,
     default: Date.now

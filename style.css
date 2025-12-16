@@ -1,3 +1,78 @@
 h1 {
-    color:blue;
+    color:rgb(20, 8, 78);
+    font-family: "Jersey 15", sans-serif;
+    font-size:xx-large;
 }
+
+h2 {
+    color:rgb(163, 71, 90);
+    font-family: "Jersey 15", sans-serif;
+}
+h3 {
+    font-family: "Jersey 15", sans-serif;
+    color:rgb(58, 234, 193)
+}
+p {
+    font-size: larger;
+    font-family: "Jersey 15", sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.player-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    padding: 20px;
+    width: 95%;
+    box-sizing: border-box;
+    border:#dce3eb 2px solid;
+    background-color: #f4f4ff;
+    border-radius: 8px;
+
+  }
+  
+  .player-card {
+    display: flex;
+    align-items: center;
+    background: #242424;
+    border: 2px solid #444;
+    border-radius: 8px;
+    padding: 12px;
+    height: 120px;
+    color: #eee;
+    font-family: monospace;
+  }
+  
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    margin-right: 12px;
+    object-fit: cover;
+  }
+  
+  .player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .username {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+
+  #meow {
+    color:rgb(53, 58, 135);
+    font-family: "Jersey 15", sans-serif;
+  }

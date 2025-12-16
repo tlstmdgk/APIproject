@@ -4,15 +4,44 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Tetralytics</title>
-    <link rel="stylesheet" type="text/css" href="../style.css"
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<h1>View your stats here! :D</h1>
+	<h1>-*v*- TetraLytics -*v*-</h1>
     <hr>
     <form action="http://localhost:5001/add-player" method="post">
-        <input id="username" placeholder="Enter username" />
+        <input id="username" name="username" placeholder="Enter username" />
         <input type="submit" value="Submit Name"/>
+    </form>
+    <hr>
+
+    <h2 id="meow"> 40L Leaderboard </h2>
+    <div class="player-grid">
+        <% players.forEach(player => { %>
+          <div class="player-card">
+            <img
+                class="avatar"
+                src="https://tetr.io/user-content/avatars/<%= player._id %>.jpg?rv=<%= player.av %>"
+                alt="avatar"
+                />
+      
+            <div class="player-info">
+              <div class="username"><%= player.username %></div>
+              <div>40L: <%= player.sprint_40 ?? "—" %></div>
+              <div>Rank: <%= player.rank ?? "—" %></div>
+              <div>TR: <%= player.tr ?? "—" %></div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+
+    <hr>
+    <h2>- Destroy all entries -</h2>
+    
+    <form action="http://localhost:5001/clear" method="post">
+        <input type="submit" value="Clear it all!"/>
     </form>
 
 </body>

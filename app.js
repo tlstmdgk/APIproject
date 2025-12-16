@@ -13,11 +13,16 @@ const Player = require("./models/Player");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.resolve(__dirname)));
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "templates"));
 
+
+const addplayer = require("./routes/addplayer.js");
+app.use("/add-player", addplayer);
+
 if (process.argv.length !== 3) {
-    console.log("Usage app.js <PORT NUMBER>");
+    console.log("Usage app.js 5001");
     process.exit(1);
   }
 const portNumber = process.argv[2];
@@ -41,64 +46,23 @@ async function main() {
 main().catch(console.error);
 
 /* Home Page */
-app.get("/", (req, res) => {
-    res.render("index");
-});
-
-app.post("/add-player", async (req, res) => {
-    try {
-        const pname = req.body;
-        console.log(pname)
-        /* im having trouble with getting the name lol */
-      
-        /* TODO: Check if pname exists and structure data according to schema, assign to player*/
-        const line40 = await get40LRecord(pname);
-        const league = await get40LRecord(pname);
-        console.log("40 L:", line40)
-        console.log("league: ",league)
-
-        const new_player = new Player ({
-            username: pname,
-            sprint_40: line40,
-            tetra_league: league,
-        })
-
-        await new_player.save();
-        console.log("New player added:", new_player);
-        const players = await Player.find({});
-        console.log("All players:", players);
-        res.send("Player added successfully");
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Error adding player");
-    }
+app.get("/", async (req, res) => {
+    const players = await Player.find({ sprint_40: { $ne: null } })
+    .sort({ sprint_40: 1 })            
+    .lean();
+    res.render("index", { players });
   });
+  
 
-async function get40LRecord(username) {
-    const res = await fetch(
-        `https://ch.tetr.io/api/users/${username}/records/40l/top`
-    );
-
-    const json = await res.json();
-
-    if (!json.success) {
-        throw new Error("TETR.IO API error");
+app.post("/clear", async (req, res)=> {
+    try {
+        await Player.deleteMany({});
+        res.redirect("/");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error clearing players");
     }
-    return json.data;
-}
-
-async function getLeagueRecord(username) {
-    const res = await fetch(
-        `https://ch.tetr.io/api/users/${username}/records/league/top`
-    );
-
-    const json = await res.json();
-
-    if (!json.success) {
-        throw new Error("TETR.IO API error");
-    }
-    return json.data;
-}
+});
 
 
 
